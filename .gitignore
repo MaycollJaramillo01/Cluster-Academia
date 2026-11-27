@@ -1,0 +1,65 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# next.js
+/.next/
+/.next-dev/
+/out/
+.vercel/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+.claude/
+
+# Raw video sources. Commit the optimized web assets that are referenced by the app.
+/public/assets/videos/new videos/
+/public/assets/videos/services/*.mov
+/public/assets/videos/services/Generacion de clientes.mp4
+/public/assets/videos/services/Google ads.mp4
+/public/assets/videos/services/Marca profesional.mp4
+/public/assets/videos/services/Presencia digital.mp4
+/public/assets/videos/services/Redes sociales.mp4
+/public/assets/videos/services/Websites-seo.mp4
+/public/assets/videos/services/digital-pack.mp4
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env*.local
+.env
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# Brand manuals: keep originals local; commit only web-optimized PDFs under GitHub's 100MB limit.
+# Full-quality masters live in .originals-backup (never commit).
+/public/assets/brand-manuals/.originals-backup/
+/public/assets/brand-manuals/*.tmp.pdf
+/public/assets/brand-manuals/*.compressed.pdf
+
+# Raw source videos outside public/ (heavy; optimized copies live under public/assets/videos/)
+/assets/videos/
+
+# Postulaciones (perfiles, archivos y hash de acceso local)
+/data/careers/
+# Astryx theme editor previews
+/themes/.astryx-render-*/
+/themes/*/preview*.png
+/themes/*/sheet*.png
+/themes/*/preview.html
+/themes/*/sheet.html
+/themes/*/*.pictures.json
+.vercel
+.env*
+
+!.env.example
