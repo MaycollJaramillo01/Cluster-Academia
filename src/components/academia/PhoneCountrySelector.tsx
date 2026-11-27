@@ -40,11 +40,11 @@ export function PhoneCountrySelector({ countries, initialCountry }: {
         <Popover label="Seleccionar país" isOpen={isOpen} onOpenChange={changeOpen} padding={2}
           content={
             <VStack gap={2} className="w-72 max-w-full">
-              <HStack gap={2} align="center" className="rounded-md border border-academy-line px-3 focus-within:border-academy-primary">
+              <HStack gap={2} align="center" className="rounded-academy border border-academy-line px-3 focus-within:border-academy-primary">
                 <Icon name="search" size={16} aria-hidden="true" className="shrink-0 text-academy-muted" />
                 <input type="search" aria-label="Buscar país o prefijo" value={query} onChange={event => setQuery(event.target.value)}
                   placeholder="Buscar país o prefijo" autoComplete="off"
-                  className="min-h-10 min-w-0 flex-1 bg-transparent text-sm outline-none"
+                  className="min-h-10 min-w-0 flex-1 bg-transparent text-sm focus-visible:!outline-none"
                   onKeyDown={event => {
                     if (event.key !== 'ArrowDown') return;
                     event.currentTarget.parentElement?.nextElementSibling?.querySelector('button')?.focus();
@@ -74,14 +74,14 @@ export function PhoneCountrySelector({ countries, initialCountry }: {
             </VStack>
           }>
           <button type="button" aria-label={`Cambiar país, ${selected.name} (+${selected.prefix})`}
-            className="flex min-h-11 shrink-0 items-center gap-2 rounded-l-academy border-r border-academy-line px-3 text-sm focus:outline-none">
+            className="flex min-h-11 shrink-0 items-center gap-2 rounded-l-academy border-r border-academy-line px-3 text-sm focus-visible:!outline-none">
             <Image src={`/flags/${selected.code}.svg`} alt="" width={24} height={16} className="h-4 w-6 rounded-sm object-cover" />
             <Text>+{selected.prefix}</Text>
             <Icon name="chevron-down" size={14} aria-hidden="true" />
           </button>
         </Popover>
         <input id="phone" name="phone" type="tel" required autoComplete="tel-national" placeholder="Número de WhatsApp"
-          className="min-h-11 min-w-0 flex-1 rounded-r-academy bg-transparent px-3 text-base outline-none" />
+          className="min-h-11 min-w-0 flex-1 rounded-r-academy bg-transparent px-3 text-base focus-visible:!outline-none" />
       </HStack>
     </VStack>
   );
