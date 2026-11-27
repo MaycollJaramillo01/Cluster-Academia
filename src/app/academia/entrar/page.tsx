@@ -75,13 +75,7 @@ export default async function EntrarPage({ searchParams }: { searchParams: Promi
                   <label htmlFor="name" className={label}>Nombre</label>
                   <input id="name" name="name" required autoComplete="name" className={input} />
                 </VStack>
-                <section className="grid gap-3 sm:grid-cols-2">
-                  <PhoneCountrySelector countries={phoneCountries} initialCountry={phoneCountry || 'HN'} />
-                  <VStack gap={0} className="min-w-0">
-                    <label htmlFor="phone" className={label}>WhatsApp</label>
-                    <input id="phone" name="phone" type="tel" required autoComplete="tel-national" className={input} />
-                  </VStack>
-                </section>
+                <PhoneCountrySelector countries={phoneCountries} initialCountry={phoneCountry || 'HN'} />
               </VStack>
             ) : null}
             <VStack gap={0}>
