@@ -17,7 +17,6 @@ export default async function BlogAdmin() {
       <PageTitle
         eyebrow="Contenido"
         title="Blog"
-        description="Notas de la academia. Una nota publicada aparece en el blog público."
         action={<Link className="academy-nav academy-focus" href="/academia/blog">Ver blog <Icon name="arrow-right" size={15} /></Link>}
       />
 

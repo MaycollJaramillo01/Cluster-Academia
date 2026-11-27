@@ -13,7 +13,7 @@ export default async function OverviewPage() {
 
   return (
     <div className="space-y-6">
-      <PageTitle title="Hoy" />
+      <PageTitle title="Análisis del CRM" />
       <VStack as="section" gap={3} aria-labelledby="eventos-web">
         <h2 id="eventos-web" className="text-xl font-semibold">Eventos web · últimos 30 días</h2>
         {events.length ? <ul className="divide-y">
@@ -21,11 +21,11 @@ export default async function OverviewPage() {
             <p>{event.source_site} · {event.event_name}</p>
             <strong>{event.total}</strong>
           </li>)}
-        </ul> : <p className="text-sm">Todavía no se han recibido eventos web.</p>}
+        </ul> : <p className="text-sm">Sin eventos web.</p>}
       </VStack>
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         <Stat label="Contactos" value={String(data.contacts)} hint={`${data.last7} en los últimos 7 días`} />
-        <Stat label="Citas del mes" value={String(data.bookings)} hint="Reservas en el mes en curso" />
+        <Stat label="Citas del mes" value={String(data.bookings)} />
         <Stat label="Campañas enviadas" value={String(data.campaigns)} hint={`${data.subscribers} suscriptores`} />
         <Stat label="Embudo abierto" value={money(data.pipeline)} hint={`Cobrado ${money(data.revenue)}`} />
       </div>

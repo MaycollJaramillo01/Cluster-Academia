@@ -16,7 +16,7 @@ export default async function ConfirmarPage({ searchParams }: { searchParams: Pr
   const course = slug ? await publishedCourse(slug) : null;
 
   return (
-    <AuthShell step={2} course={course}>
+    <AuthShell course={course}>
       <VStack gap={2}>
         <p className="w-fit rounded-academy-full bg-academy-tint px-3 py-1 text-xs font-semibold text-academy-primary">Enlace de acceso</p>
         <Heading level={1} className="academy-title">Confirma tu acceso</Heading>

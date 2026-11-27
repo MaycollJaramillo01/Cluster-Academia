@@ -13,7 +13,6 @@ export type Section = {
   href: string;
   label: string;
   title: string;
-  description: string;
 };
 
 export const sections: Section[] = [
@@ -22,84 +21,72 @@ export const sections: Section[] = [
     href: '/dashboard',
     label: 'Inicio',
     title: 'Operación',
-    description: 'Contactos, citas, campañas y el valor que se está moviendo.',
   },
   {
     id: 'sitios',
     href: '/dashboard/sitios',
     label: 'Sitios',
     title: 'Sitios y embudos',
-    description: 'Páginas que Cluster publica y los embudos que convierten.',
   },
   {
     id: 'editor',
     href: '/dashboard/editor',
     label: 'Editor',
     title: 'Editor',
-    description: 'Bloques de una página: orden, texto y botón.',
   },
   {
     id: 'cursos',
     href: '/dashboard/cursos',
     label: 'Academia',
     title: 'Academia',
-    description: 'Cursos, aula, marketplace, blog, ventas, comisiones y junta.',
   },
   {
     id: 'tienda',
     href: '/dashboard/tienda',
     label: 'Tienda',
     title: 'Tienda',
-    description: 'Productos, precios y pedidos cobrados.',
   },
   {
     id: 'contactos',
     href: '/dashboard/contactos',
     label: 'Contactos',
     title: 'Contactos',
-    description: 'Personas que escriben, compran o agendan con Cluster.',
   },
   {
     id: 'citas',
     href: '/dashboard/citas',
     label: 'Citas',
     title: 'Citas',
-    description: 'Eventos, agenda y quién atiende cada reserva.',
   },
   {
     id: 'mensajes',
     href: '/dashboard/mensajes',
     label: 'Mensajes',
     title: 'Mensajes',
-    description: 'Campañas, automatizaciones y la bandeja de conversaciones.',
   },
   {
     id: 'comunidad',
     href: '/dashboard/comunidad',
     label: 'Comunidad',
     title: 'Comunidad',
-    description: 'Círculos, miembros y lo que hay que moderar.',
   },
   {
     id: 'embudo',
     href: '/dashboard/embudo',
     label: 'Embudo',
     title: 'Embudo',
-    description: 'Oportunidades, del primer mensaje al cierre.',
   },
   {
     id: 'profesor',
     href: '/dashboard/profesor',
     label: 'Mis cursos',
     title: 'Mis cursos',
-    description: 'Tus cursos, tus alumnos y tus ventas.',
   },
   {
     id: 'equipo',
     href: '/dashboard/equipo',
     label: 'Equipo',
     title: 'Equipo',
-    description: 'Quién entra al panel, con qué rol y su segundo factor.',
   },
 ];
 

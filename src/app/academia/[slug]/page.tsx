@@ -144,7 +144,7 @@ export default async function CourseCatalogPage({
       <section className="mx-auto grid w-full max-w-7xl items-start gap-x-14 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_22rem] lg:px-8">
         <VStack as="header" gap={4} className="py-6 sm:gap-6 sm:py-10 lg:col-start-1 lg:row-start-1 lg:py-12">
           <nav aria-label="Ruta del curso" className="flex flex-wrap items-center gap-x-2 text-sm font-semibold text-academy-muted">
-            <Link href={catalogPath} className="py-2 underline-offset-4 hover:underline">Catálogo</Link>
+            <Link href={catalogPath} className="py-2 underline-offset-4 hover:underline">Explorar</Link>
             {topic ? (
               <>
                 <Icon name="chevron-down" size={14} className="-rotate-90" aria-hidden="true" />

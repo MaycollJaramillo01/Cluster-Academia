@@ -9,7 +9,7 @@ export default async function ComisionPage() {
 
   return (
     <VStack gap={8} className="mx-auto w-full max-w-3xl">
-      <PageTitle eyebrow="Operación" title="Comisión" description="La parte de cada venta que se queda la academia y los datos que ven los compradores para pagar por transferencia." />
+      <PageTitle eyebrow="Operación" title="Comisión" />
       <form action={saveSettings} className="academy-panel">
         <VStack gap={6} className="p-5 sm:p-6">
           <Field label="Comisión de la academia (%)" hint="Se aplica a los vendedores con contrato general." className="max-w-xs">

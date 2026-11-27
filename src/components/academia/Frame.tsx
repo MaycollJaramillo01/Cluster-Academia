@@ -15,8 +15,7 @@ import { AcademyTheme } from './AcademySurface';
 
 const links = [
   ['/academia', 'Inicio'],
-  ['/academia?vista=catalogo#catalogo', 'Catálogo'],
-  ['/academia/marketplace', 'Marketplace'],
+  ['/academia?vista=catalogo#catalogo', 'Explorar'],
   ['/academia/blog', 'Blog'],
   ['/academia/retos', 'Retos'],
 ] as const;
@@ -111,10 +110,9 @@ export function Frame({ children, signedIn }: { children: ReactNode; signedIn: b
           <Grid columns={{ minWidth: 200, max: 4 }} gap={8}>
             <VStack gap={3}>
               <Text className="text-xl font-bold text-white">Academia Cluster</Text>
-              <Text as="p" className="max-w-xs text-sm leading-relaxed text-white/75">Habilidades digitales para llevar tus ideas a la práctica y hacer crecer tu negocio.</Text>
             </VStack>
             {[
-              { title: 'Explora', links: [['/academia?vista=catalogo#catalogo', 'Todos los cursos'], ['/academia?tipo=gratis#catalogo', 'Cursos gratuitos'], ['/academia/marketplace', 'Marketplace'], ['/academia/blog', 'Blog']] },
+              { title: 'Explora', links: [['/academia?vista=catalogo#catalogo', 'Cursos y recursos'], ['/academia?tipo=gratis#catalogo', 'Cursos gratuitos'], ['/academia/blog', 'Blog']] },
               { title: 'Tu aprendizaje', links: [['/academia/mis-cursos', 'Mis cursos'], ['/academia/constancias', 'Mis constancias'], ['/academia/recibos', 'Mis recibos'], ['/academia/perfil', 'Mi cuenta']] },
               { title: 'Academia', links: [['/academia/suscripcion', 'Suscripciones'], ['/academia/retos', 'Retos'], ['/academia/apoyar', 'Apoyar la academia'], ['/dashboard/cursos', 'Panel de gestión']] },
             ].map((group) => (
