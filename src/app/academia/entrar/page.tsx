@@ -7,6 +7,7 @@ import { VStack } from '@astryxdesign/core/VStack';
 import { enterAcademia } from '@/lib/valux/actions';
 import { AcademySubmit } from '@/components/academia/AcademySubmit';
 import { AccessTabs } from '@/components/academia/AccessTabs';
+import { PhoneCountrySelector } from '@/components/academia/PhoneCountrySelector';
 import { AuthError, AuthShell } from '@/components/academia/AuthShell';
 import { LoginForm } from '@/components/dashboard/LoginForm';
 import { Icon } from '@/components/ui/Icon';
@@ -75,12 +76,7 @@ export default async function EntrarPage({ searchParams }: { searchParams: Promi
                   <input id="name" name="name" required autoComplete="name" className={input} />
                 </VStack>
                 <section className="grid gap-3 sm:grid-cols-2">
-                  <VStack gap={0} className="min-w-0">
-                    <label htmlFor="phone-country" className={label}>País</label>
-                    <select id="phone-country" name="phone_country" autoComplete="country" defaultValue={phoneCountry} className={input}>
-                      {phoneCountries.map(({ code, name, prefix }) => <option key={code} value={code}>{name} (+{prefix})</option>)}
-                    </select>
-                  </VStack>
+                  <PhoneCountrySelector countries={phoneCountries} initialCountry={phoneCountry || 'HN'} />
                   <VStack gap={0} className="min-w-0">
                     <label htmlFor="phone" className={label}>WhatsApp</label>
                     <input id="phone" name="phone" type="tel" required autoComplete="tel-national" className={input} />
