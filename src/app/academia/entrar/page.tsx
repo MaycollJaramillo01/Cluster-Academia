@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { headers } from 'next/headers';
 import { Heading } from '@astryxdesign/core/Heading';
 import { HStack } from '@astryxdesign/core/HStack';
 import { VStack } from '@astryxdesign/core/VStack';
@@ -14,6 +15,8 @@ import { homeFor } from '@/lib/crm/roles';
 import { publishedCourse } from '@/lib/valux/data';
 import { courseLoginQuery, loginCourse } from '@/lib/valux/login-course';
 
+import { defaultPhoneCountry, phoneCountries } from '@/lib/valux/registration-phone';
+
 const input = 'academy-field w-full';
 const label = 'mb-2 block text-sm font-semibold';
 
@@ -25,6 +28,7 @@ export default async function EntrarPage({ searchParams }: { searchParams: Promi
     if (session) redirect(homeFor(session.role));
   }
   const register = query.modo === 'registro';
+  const phoneCountry = !teacher && register ? defaultPhoneCountry((await headers()).get('x-vercel-ip-country')) : undefined;
   const slug = loginCourse(query.curso);
   const course = !teacher && slug ? await publishedCourse(slug) : null;
   const context = courseLoginQuery(course?.slug);
@@ -32,7 +36,7 @@ export default async function EntrarPage({ searchParams }: { searchParams: Promi
     ? 'Ese enlace ya se usó o venció. Pide un código nuevo.'
     : query.error === 'datos'
       ? register
-        ? 'Revisa tu nombre, el WhatsApp con código de país y el correo.'
+        ? 'Revisa tu nombre, el país, el número de WhatsApp y el correo.'
         : 'Revisa el correo: parece incompleto.'
       : query.error === 'correo'
         ? 'No pudimos enviar el código. Intenta de nuevo en unos minutos.'
@@ -65,17 +69,24 @@ export default async function EntrarPage({ searchParams }: { searchParams: Promi
             <input type="hidden" name="modo" value={register ? 'registro' : 'entrar'} />
             <input type="hidden" name="curso" value={course?.slug || ''} />
             {register ? (
-              <section className="grid gap-5 sm:grid-cols-2">
+              <VStack gap={5}>
                 <VStack gap={0}>
                   <label htmlFor="name" className={label}>Nombre</label>
                   <input id="name" name="name" required autoComplete="name" className={input} />
                 </VStack>
-                <VStack gap={0}>
-                  <label htmlFor="phone" className={label}>WhatsApp</label>
-                  <input id="phone" name="phone" type="tel" required autoComplete="tel" placeholder="+504 9999 9999" aria-describedby="phone-hint" className={input} />
-                  <small id="phone-hint" className="mt-1.5 text-xs text-academy-muted">Con código de país.</small>
-                </VStack>
-              </section>
+                <section className="grid gap-3 sm:grid-cols-2">
+                  <VStack gap={0} className="min-w-0">
+                    <label htmlFor="phone-country" className={label}>País</label>
+                    <select id="phone-country" name="phone_country" autoComplete="country" defaultValue={phoneCountry} className={input}>
+                      {phoneCountries.map(({ code, name, prefix }) => <option key={code} value={code}>{name} (+{prefix})</option>)}
+                    </select>
+                  </VStack>
+                  <VStack gap={0} className="min-w-0">
+                    <label htmlFor="phone" className={label}>WhatsApp</label>
+                    <input id="phone" name="phone" type="tel" required autoComplete="tel-national" className={input} />
+                  </VStack>
+                </section>
+              </VStack>
             ) : null}
             <VStack gap={0}>
               <label htmlFor="email" className={label}>Correo</label>

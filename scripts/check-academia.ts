@@ -25,6 +25,12 @@ async function main() {
   req.connection = async () => {};
   const { crm } = require('@/lib/crm/db') as typeof import('@/lib/crm/db');
   const { startLogin, verifyLoginCode, verifyLoginLink } = await import('@/lib/valux/login');
+  const { defaultPhoneCountry, registrationPhone } = await import('@/lib/valux/registration-phone');
+  check('país por IP y respaldo de Honduras', defaultPhoneCountry('NI') === 'NI' && defaultPhoneCountry(null) === 'HN' && defaultPhoneCountry('ZZ') === 'HN');
+  check('WhatsApp nacional se guarda con prefijo', registrationPhone('8888 1234', 'NI') === '+50588881234');
+  check('WhatsApp internacional conserva su prefijo', registrationPhone('+1 213 373 4253', 'HN') === '+12133734253');
+  check('WhatsApp inválido se rechaza', registrationPhone('1234', 'NI') === '' && registrationPhone('88881234', 'ZZ') === '');
+  check('formularios previos conservan formato internacional', registrationPhone('+504 9999 9999', '') === '+50499999999');
   const { canReadCourse, listPlans } = await import('@/lib/valux/data');
   const { revokeSales } = await import('@/lib/valux/fulfill');
   const sql = await crm();

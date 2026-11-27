@@ -1,5 +1,6 @@
 'use server';
 
+import { registrationPhone } from './registration-phone';
 import { cookies, headers } from 'next/headers';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
@@ -17,7 +18,7 @@ import { periodYm, slugify } from './money';
 import { cancelPaypalSubscription, paypalConfigured, sendPaypalPayout } from './paypal';
 import { bankDetails, createTransfer } from './transfers';
 import { academiaPersonId, clearAcademiaPerson, setAcademiaPerson } from './session';
-import { cleanPhone, startLogin, verifyLoginCode, verifyLoginLink } from './login';
+import { startLogin, verifyLoginCode, verifyLoginLink } from './login';
 import { courseLoginQuery, loginCourse } from './login-course';
 import { cancelStripeSubscription, createStripeCheckout, stripeConfigured } from './stripe';
 import { sendAcademiaMail } from './mail';
@@ -318,7 +319,7 @@ export async function enterAcademia(formData: FormData) {
   const mode = register ? '&modo=registro' : '';
   const email = field(formData, 'email');
   const name = field(formData, 'name');
-  const phone = cleanPhone(field(formData, 'phone'));
+  const phone = registrationPhone(field(formData, 'phone'), field(formData, 'phone_country'));
   if (!email.includes('@') || (register && (!name || !phone))) redirect(`/academia/entrar?error=datos${mode}${context}`);
   // El enlace del correo sale del dominio fijo: un Host falso no puede desviarlo.
   const base = process.env.NODE_ENV === 'production' ? site.url : await origin();
