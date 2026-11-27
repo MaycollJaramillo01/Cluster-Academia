@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
 import { redirect } from 'next/navigation';
-import { processDue } from '@/lib/crm/automations';
 import { dashboardSession } from '@/lib/crm/session';
 import { sidebarCounts } from '@/lib/crm/queries';
 import { KeepFormData } from '@/components/dashboard/KeepFormData';
@@ -15,11 +14,6 @@ export default async function PanelLayout({ children }: { children: React.ReactN
 
   try {
     const counts = await sidebarCounts();
-    try {
-      if (process.env.CRM_OPERATIONS_ENABLED === 'true') await processDue();
-    } catch {
-      // Una automatización pendiente no debe tumbar el panel.
-    }
     return (
       <Suspense fallback={<p className="p-8 font-mono text-xs uppercase tracking-[0.16em] text-black/40">Cargando</p>}>
         <KeepFormData />

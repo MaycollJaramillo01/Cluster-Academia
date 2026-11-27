@@ -144,6 +144,7 @@ src/lib/crm/types.ts         Etapas del embudo y tipos del panel
 
 | Variable | Para qué |
 | --- | --- |
+| `DASHBOARD_PRIMARY_ADMIN_EMAIL` | Correo único autorizado para el alta inicial con contraseña del servidor. Predeterminado: `info@cluster.marketing`. |
 | `DASHBOARD_ALLOWED_EMAILS` | Admins extra |
 | `CAREERS_AUTH_SECRET` o `DASHBOARD_AUTH_SECRET` | Firma de la cookie |
 | `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` | Login con Google |

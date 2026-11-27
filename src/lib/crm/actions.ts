@@ -4,7 +4,7 @@ import { processCampaignSends, queueCampaign } from './campaigns';
 import { headers } from 'next/headers';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { processDue, queueAutomations, startAutomations } from './automations';
+import { queueAutomations } from './automations';
 import { crm } from './db';
 import { requireDashboard } from './session';
 import { deliverEmail, deliverSms, deliverWhatsapp } from './deliver';
@@ -99,7 +99,7 @@ export async function createContact(formData: FormData) {
     const idTag = await tagIdFor(tag);
     await sql`INSERT INTO contact_tags (contact_id, tag_id) VALUES (${id}, ${idTag}) ON CONFLICT DO NOTHING`;
   }
-  await startAutomations(id);
+  await queueAutomations(id);
   refresh();
   redirect(`/dashboard/contactos/${id}`);
 }
@@ -211,7 +211,6 @@ export async function importContacts(formData: FormData) {
     await queueAutomations(String((inserted[0] as { id: string }).id));
   }
   refresh();
-  await processDue(20);
   const tope = pending.length > limited.length ? '&tope=1' : '';
   redirect(`/dashboard/contactos?importados=${imported}${tope}`);
 }

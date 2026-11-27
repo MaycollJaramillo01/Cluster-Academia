@@ -1,4 +1,4 @@
-import { startAutomations } from './automations';
+import { queueAutomations } from './automations';
 import { crm } from './db';
 
 const IDENTITY_FIELDS = new Set([
@@ -88,5 +88,5 @@ export async function captureLead(input: {
     `;
   }
   await sql`UPDATE form_submits SET contact_id = ${id} WHERE id = ${submitId}`;
-  if (input.automate !== false) await startAutomations(id);
+  if (input.automate !== false) await queueAutomations(id);
 }

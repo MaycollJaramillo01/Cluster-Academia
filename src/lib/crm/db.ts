@@ -505,6 +505,11 @@ const STATEMENTS = [
     run_at TIMESTAMPTZ NOT NULL,
     done_at TIMESTAMPTZ
   )`,
+  `ALTER TABLE automation_jobs
+    ADD COLUMN IF NOT EXISTS claimed_at TIMESTAMPTZ,
+    ADD COLUMN IF NOT EXISTS failed_at TIMESTAMPTZ,
+    ADD COLUMN IF NOT EXISTS first_attempt_at TIMESTAMPTZ,
+    ADD COLUMN IF NOT EXISTS needs_review BOOLEAN NOT NULL DEFAULT false`,
   // Academia: registro con WhatsApp y acceso por código o enlace de un solo uso.
   `ALTER TABLE valux_people ADD COLUMN IF NOT EXISTS phone TEXT`,
   `CREATE TABLE IF NOT EXISTS academia_logins (
