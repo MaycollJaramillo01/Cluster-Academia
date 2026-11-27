@@ -11,6 +11,7 @@ import type { publishedCourses } from '@/lib/valux/data';
 import { academyMoney } from '@/lib/valux/money';
 import { whatsappLink } from '@/lib/site';
 import { Cover, durationLabel, payNote } from './ui';
+import { AcademyResources } from './AcademyResources';
 import { CatalogControls } from './CatalogControls';
 
 type Course = Awaited<ReturnType<typeof publishedCourses>>[number];
@@ -67,10 +68,11 @@ export function AcademyCatalog({ courses, topics, ratings, total, q, category, p
   return (
     <VStack as="main" gap={0} id="catalogo" className="scroll-mt-20 bg-academy-page">
       <VStack as="header" gap={5} className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <nav aria-label="Ruta del catálogo" className="flex items-center gap-2 text-xs text-academy-muted"><Link href="/academia" className="academy-focus py-2">Inicio</Link><Icon name="chevron-down" size={12} className="-rotate-90" /><Text className="text-xs font-medium">Catálogo de cursos</Text></nav>
-        <Heading level={1} className="text-3xl font-extrabold tracking-tight sm:text-4xl">Catálogo de cursos</Heading>
+        <nav aria-label="Ruta de exploración" className="flex items-center gap-2 text-xs text-academy-muted"><Link href="/academia" className="academy-focus py-2">Inicio</Link><Icon name="chevron-down" size={12} className="-rotate-90" /><Text className="text-xs font-medium">Explorar</Text></nav>
+        <Heading level={1} className="text-3xl font-extrabold tracking-tight sm:text-4xl">Explorar</Heading>
+        <Link href="#recursos" className="academy-nav academy-focus w-fit">Recursos digitales</Link>
       </VStack>
-      <VStack as="section" aria-label="Búsqueda y filtros" className="border-y border-academy-line bg-academy-surface">
+      <VStack as="section" aria-label="Búsqueda y filtros de cursos" className="border-y border-academy-line bg-academy-surface">
         <VStack className="mx-auto w-full max-w-7xl px-4 py-4 sm:px-6 lg:px-8"><CatalogControls key={JSON.stringify([q, category, price, order, duration, format])} q={q} category={category} price={price} order={order} duration={duration} format={format} topics={topics.map(({ id, label, count }) => ({ id, label, count }))} total={total} /></VStack>
       </VStack>
       <VStack gap={10} className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
@@ -90,8 +92,9 @@ export function AcademyCatalog({ courses, topics, ratings, total, q, category, p
             {others.flatMap((course, index) => [<CatalogCourse key={course.id} course={course} rating={ratings.get(course.id)} list={list} />, ...(!list && index === Math.min(1, others.length - 1) ? [<CatalogAdvice key="advice" />] : [])])}
           </Grid>
         </VStack> : null}
-        {!courses.length ? <VStack gap={4} className="academy-panel items-start p-8"><Heading level={2} className="text-xl font-bold">No encontramos cursos con esos filtros</Heading><Text as="p" className="text-academy-muted">Prueba otra búsqueda o explora el catálogo completo.</Text><Button as={Link} href="/academia?vista=catalogo#catalogo" label="Limpiar filtros" variant="secondary" /></VStack> : null}
+        {!courses.length ? <VStack gap={4} className="academy-panel items-start p-8"><Heading level={2} className="text-xl font-bold">No encontramos cursos con esos filtros</Heading><Text as="p" className="text-academy-muted">Prueba otra búsqueda o limpia los filtros.</Text><Button as={Link} href="/academia?vista=catalogo#catalogo" label="Limpiar filtros" variant="secondary" /></VStack> : null}
         <HStack gap={4} align="center" justify="between" wrap="wrap" className="academy-panel px-5 py-4"><Text role="status" className="text-sm font-semibold">Mostrando {courses.length} de {total} cursos disponibles</Text></HStack>
+        <AcademyResources />
       </VStack>
       <VStack as="section" className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8"><HStack gap={6} align="center" justify="between" wrap="wrap" className="academy-panel p-6 sm:p-8"><VStack gap={3}><Text className="text-xs font-semibold text-academy-primary">Academia Cluster para tu equipo</Text><Heading level={2} className="text-2xl font-bold">¿Buscas capacitar a tu equipo de trabajo?</Heading><Text as="p" className="max-w-2xl text-sm leading-relaxed text-academy-muted">Cuéntanos qué habilidades necesitan desarrollar y conversemos sobre las opciones de formación.</Text></VStack><Button as="a" href={whatsappLink('Hola, quisiera información sobre formación para mi equipo con Academia Cluster.')} label="Consultar para mi equipo" variant="primary" /></HStack></VStack>
     </VStack>

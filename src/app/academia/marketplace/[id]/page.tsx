@@ -30,7 +30,7 @@ export default async function ProductPage({
     <main className="academy-page grid max-w-6xl items-start gap-8 lg:grid-cols-[1fr_theme(spacing.96)]">
       <VStack as="article" gap={6} className="min-w-0">
         <HStack as="nav" aria-label="Ruta" gap={2} align="center" className="text-sm">
-          <Link href="/academia/marketplace" className="academy-focus rounded-academy font-semibold text-academy-muted hover:text-academy-ink">Marketplace</Link>
+          <Link href="/academia?vista=catalogo#recursos" className="academy-focus rounded-academy font-semibold text-academy-muted hover:text-academy-ink">Recursos digitales</Link>
           <Icon name="arrow-right" size={14} className="text-academy-muted" />
           <p aria-current="page" className="truncate font-semibold">{product.title}</p>
         </HStack>
