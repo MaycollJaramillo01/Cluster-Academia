@@ -32,7 +32,7 @@ export default async function TransferenciasPage({
 
   return (
     <VStack gap={6} className="mx-auto w-full max-w-6xl">
-      <PageTitle eyebrow="Operación" title="Transferencias" description="Pagos por depósito o transferencia bancaria que esperan confirmación." />
+      <PageTitle eyebrow="Operación" title="Transferencias" />
       <Notice>Aprueba solo después de ver el depósito en el banco. El comprobante que sube el comprador no prueba el pago. Las pendientes vencen solas a las 72 horas; una vencida todavía se puede aprobar si el dinero llegó.</Notice>
       <Tabs label="Estado de las transferencias" items={FILTERS.map((item) => ({ href: `/dashboard/cursos/transferencias?estado=${item.status}`, label: item.label, current: item === filter }))} />
       {query.ok ? <Notice tone="ok">Transferencia aprobada. Se habilitó el acceso.</Notice> : null}

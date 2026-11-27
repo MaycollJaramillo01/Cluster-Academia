@@ -20,6 +20,7 @@ export async function deliverEmail(
   text: string,
   attachment?: { filename: string; content: string },
   headers?: Record<string, string>,
+  idempotencyKey?: string,
 ) {
   const key = process.env.RESEND_API_KEY?.trim();
   const email = to.trim().toLowerCase();
@@ -27,7 +28,11 @@ export async function deliverEmail(
   try {
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
-      headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+      headers: {
+        Authorization: `Bearer ${key}`,
+        'Content-Type': 'application/json',
+        ...(idempotencyKey ? { 'Idempotency-Key': idempotencyKey } : {}),
+      },
       body: JSON.stringify({
         from: process.env.CONTACT_FROM_EMAIL || 'Cluster Media <onboarding@resend.dev>',
         to: email,

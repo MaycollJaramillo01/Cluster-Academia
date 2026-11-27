@@ -28,7 +28,6 @@ export default async function CoursesPage({ searchParams }: { searchParams: Prom
       <PageTitle
         eyebrow="Contenido"
         title="Cursos"
-        description="Crea cursos, revisa los que envían los profesores y elige cuáles destacan en la portada."
         action={<Link href="/dashboard/cursos/revisiones" className={btnGhost}>Revisiones{toReview ? <Badge label={String(toReview)} /> : null}</Link>}
       />
       <NewCourseForm error={query.error} />

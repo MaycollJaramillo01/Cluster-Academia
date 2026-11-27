@@ -60,7 +60,7 @@ export default async function CoursePage({ params, searchParams }: { params: Pro
   return (
     <TeacherCourseBuilder course={course} sections={sections} lessons={lessons} status={status} role={session.role} view={view} revision={revision} issues={view === 'revision' ? courseReviewIssues(detail) : []}>
       {settings ? <VStack as="section" gap={5} aria-labelledby="ajustes-titulo">
-        <SectionTitle id="ajustes-titulo" title="Configuración comercial" description="Precio, profesor, membresía y las ofertas que aparecen al pagar este curso." />
+        <SectionTitle id="ajustes-titulo" title="Configuración comercial" />
         <form action={updateCourseMeta} className="academy-panel">
           <input type="hidden" name="id" value={course.id} />
           <VStack gap={8} className="p-5 sm:p-6">

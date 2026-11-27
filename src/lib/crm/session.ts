@@ -12,7 +12,7 @@ const MFA_MS = 1000 * 60 * 10;
 
 export type DashboardSession = { email: string; name: string; role: StaffRole };
 
-export const PRIMARY_ADMIN = 'leandromatiasgonz@gmail.com';
+export const PRIMARY_ADMIN = process.env.DASHBOARD_PRIMARY_ADMIN_EMAIL?.trim().toLowerCase() || 'info@cluster.marketing';
 
 const DEFAULT_ADMINS = [PRIMARY_ADMIN];
 

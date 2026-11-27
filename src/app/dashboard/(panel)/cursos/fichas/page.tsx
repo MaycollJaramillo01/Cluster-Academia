@@ -32,7 +32,7 @@ export default async function FichasPage() {
 
   return (
     <VStack gap={8} className="mx-auto w-full max-w-5xl">
-      <PageTitle eyebrow="Alumnos" title="Fichas" description="Solicitudes que llegan desde la ficha de la academia. Cambia su estado y deja una nota interna." />
+      <PageTitle eyebrow="Alumnos" title="Fichas" />
       {applications.length === 0 ? <Empty title="Nadie ha enviado una ficha." /> : (
         <VStack as="ul" gap={4}>
           {applications.map((item) => {
