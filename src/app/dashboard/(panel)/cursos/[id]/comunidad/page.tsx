@@ -33,7 +33,7 @@ export default async function CourseCommunity({ params, searchParams }: {
   const base = `/dashboard/cursos/${id}`;
   return (
     <VStack gap={8} className="mx-auto w-full max-w-5xl">
-      <PageTitle back={{ href: base, label: String(course.title) }} eyebrow="Comunidad" title="Comunidad del curso" description="Responde las preguntas que dejan los alumnos en cada clase y modera las reseñas." />
+      <PageTitle back={{ href: base, label: String(course.title) }} title="Comunidad del curso" />
       {resultado === 'error' ? <Notice tone="error">Comprueba el texto o vuelve a abrir el elemento. Su estado pudo haber cambiado.</Notice> : null}
       {resultado === 'ok' ? <Notice tone="ok">Respuesta guardada.</Notice> : null}
       {resultado === 'resena' ? <Notice tone="ok">Estado de la reseña actualizado.</Notice> : null}

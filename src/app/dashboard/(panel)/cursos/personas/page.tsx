@@ -12,7 +12,7 @@ export default async function PersonasPage() {
 
   return (
     <VStack gap={8} className="mx-auto w-full max-w-6xl">
-      <PageTitle eyebrow="Alumnos" title="Personas" description="Cuentas de la academia: alumnos, profesores, asociados y junta. El rol define qué puede hacer cada una." />
+      <PageTitle eyebrow="Alumnos" title="Personas" />
 
       <details className="academy-panel">
         <summary className="academy-focus flex min-h-12 cursor-pointer list-none items-center px-5 font-semibold text-academy-primary sm:px-6">Agregar persona</summary>
