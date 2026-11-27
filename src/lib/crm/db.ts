@@ -765,6 +765,7 @@ let clientUrl = '';
 let ready: Promise<void> | null = null;
 
 export function databaseUrl() {
+  if (process.env.VERCEL_ENV === 'preview') return (process.env.QA_DATABASE_URL || '').trim();
   return (process.env.DATABASE_URL || '').trim();
 }
 
