@@ -8,7 +8,7 @@ export default async function ClientesPage() {
 
   return (
     <VStack gap={8} className="mx-auto w-full max-w-5xl">
-      <PageTitle eyebrow="Alumnos" title="Clientes" description="Personas que compraron algo en la academia, con su número de compras y el total pagado." />
+      <PageTitle eyebrow="Alumnos" title="Clientes" />
       {clients.length === 0 ? <Empty title="Todavía no hay compras." /> : (
         <Table label="Clientes" head={['Cliente', 'Compras', 'Total']}>
           {clients.map((client) => (

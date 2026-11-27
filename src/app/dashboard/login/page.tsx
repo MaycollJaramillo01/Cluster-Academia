@@ -1,13 +1,23 @@
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { dashboardSession } from '@/lib/crm/session';
+import { Heading } from '@astryxdesign/core/Heading';
+import { VStack } from '@astryxdesign/core/VStack';
+import { LoginForm } from '@/components/dashboard/LoginForm';
 import { homeFor } from '@/lib/crm/roles';
+import { dashboardSession, googleConfigured } from '@/lib/crm/session';
 
-// Un único acceso visual para maestros y estudiantes; conserva los enlaces antiguos.
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
   const session = await dashboardSession();
   if (session) redirect(homeFor(session.role));
-  const params = await searchParams;
-  const query = new URLSearchParams({ acceso: 'maestros' });
-  if (params.error) query.set('error', params.error);
-  redirect(`/academia/entrar?${query}`);
+  const { error } = await searchParams;
+
+  return (
+    <main className="mx-auto max-w-md px-6 py-12">
+      <VStack gap={6}>
+        <Heading level={1}>Cluster CRM</Heading>
+        <LoginForm initialError={error || ''} />
+        {googleConfigured() ? <Link href="/dashboard/auth/google" className="underline">Entrar con Google</Link> : null}
+      </VStack>
+    </main>
+  );
 }

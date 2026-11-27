@@ -28,7 +28,7 @@ export default async function RevisionesPage() {
 
   return (
     <VStack gap={8} className="mx-auto w-full max-w-6xl">
-      <PageTitle eyebrow="Contenido" title="Revisiones" description="Lo que espera una decisión: cursos enviados por profesores, recursos, notas del blog y fichas nuevas." />
+      <PageTitle eyebrow="Contenido" title="Revisiones" />
       <Queue id="cursos-revision" title="Cursos" count={courses.length} empty="Los cursos enviados por profesores aparecerán aquí.">
         {courses.map((course) => (
           <li key={course.id} className={rowClass}>

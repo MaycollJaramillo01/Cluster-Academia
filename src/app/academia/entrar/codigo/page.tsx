@@ -17,9 +17,8 @@ export default async function CodigoPage({ searchParams }: { searchParams: Promi
   const again = `/academia/entrar?modo=${query.modo === 'registro' ? 'registro' : 'entrar'}${courseLoginQuery(query.curso)}`;
 
   return (
-    <AuthShell step={2} course={course}>
+    <AuthShell course={course}>
       <VStack gap={2}>
-        <p className="w-fit rounded-academy-full bg-academy-tint px-3 py-1 text-xs font-semibold text-academy-primary">Paso 2 de 3</p>
         <Heading level={1} className="academy-title">Revisa tu correo</Heading>
         <p className="text-academy-muted">Te enviamos un código de 6 dígitos. Escríbelo para entrar.</p>
       </VStack>

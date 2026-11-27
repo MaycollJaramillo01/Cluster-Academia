@@ -40,13 +40,12 @@ export default async function EntrarPage({ searchParams }: { searchParams: Promi
   const modeLink = (mode: 'entrar' | 'registro') => `/academia/entrar?modo=${mode}${context}`;
 
   return (
-    <AuthShell step={1} course={course} teacher={teacher}>
+    <AuthShell course={course}>
       {course ? null : <AccessTabs teacher={teacher} />}
       {teacher ? (
         <VStack gap={6}>
           <VStack gap={2}>
             <Heading level={1} className="academy-title">Acceso para maestros</Heading>
-            <p className="text-academy-muted">Accede al editor, a tus alumnos y al avance de tus cursos.</p>
           </VStack>
           <LoginForm initialError={query.error || ''} />
           {googleConfigured() ? <Link href="/dashboard/auth/google" className="academy-action academy-action-secondary justify-center">Entrar con Google</Link> : null}

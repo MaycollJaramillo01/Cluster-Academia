@@ -111,7 +111,6 @@ export function Frame({ children, signedIn }: { children: ReactNode; signedIn: b
           <Grid columns={{ minWidth: 200, max: 4 }} gap={8}>
             <VStack gap={3}>
               <Text className="text-xl font-bold text-white">Academia Cluster</Text>
-              <Text as="p" className="max-w-xs text-sm leading-relaxed text-white/75">Habilidades digitales para llevar tus ideas a la práctica y hacer crecer tu negocio.</Text>
             </VStack>
             {[
               { title: 'Explora', links: [['/academia?vista=catalogo#catalogo', 'Todos los cursos'], ['/academia?tipo=gratis#catalogo', 'Cursos gratuitos'], ['/academia/marketplace', 'Marketplace'], ['/academia/blog', 'Blog']] },

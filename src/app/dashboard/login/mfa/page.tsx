@@ -63,14 +63,11 @@ export default async function MfaPage({ searchParams }: { searchParams: Promise<
         <HStack align="center" justify="center" className="size-10 shrink-0 rounded-academy bg-academy-ink">
           <Image src="/assets/logo-white.webp" alt="" width={28} height={18} />
         </HStack>
-        <p className="text-base font-bold">Academia</p>
-        <p className="border-l border-academy-line pl-3 text-sm font-medium text-academy-muted">Acceso del equipo</p>
+        <p className="text-base font-bold">Cluster CRM</p>
       </HStack>
-      <AuthShell step={2} teacher>
+      <AuthShell>
         <VStack gap={2}>
-          <p className="w-fit rounded-academy-full bg-academy-tint px-3 py-1 text-xs font-semibold text-academy-primary">Paso 2 de 3</p>
-          <Heading level={1} className="academy-title">{enrolled ? 'Verificación en dos pasos' : 'Protege tu cuenta'}</Heading>
-          <p className="text-academy-muted">{enrolled ? 'Abre tu aplicación de autenticación y escribe el código que muestra para Cluster.' : 'Activa la verificación en dos pasos con una aplicación de autenticación. Solo se hace una vez.'}</p>
+          <Heading level={1} className="academy-title">{enrolled ? 'Verificación en dos pasos' : 'Configurar verificación en dos pasos'}</Heading>
         </VStack>
         {enrolled ? codeForm : (
           <ol className="space-y-8">

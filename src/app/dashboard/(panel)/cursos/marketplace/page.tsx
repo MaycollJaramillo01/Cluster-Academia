@@ -19,7 +19,6 @@ export default async function MarketplaceAdmin({ searchParams }: { searchParams:
       <PageTitle
         eyebrow="Contenido"
         title="Marketplace"
-        description="Recursos descargables que se venden o regalan en la academia."
         action={<Link className="academy-nav academy-focus" href="/academia/marketplace">Ver catálogo <Icon name="arrow-right" size={15} /></Link>}
       />
       {query.error === 'archivo' ? <Notice tone="error">No se pudo guardar la descarga. Verifica el enlace o el almacenamiento privado y el límite de 8 MB.</Notice> : null}
