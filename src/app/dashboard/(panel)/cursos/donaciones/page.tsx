@@ -10,7 +10,7 @@ export default async function DonacionesPage() {
 
   return (
     <VStack gap={8} className="mx-auto w-full max-w-6xl">
-      <PageTitle eyebrow="Operación" title="Donaciones" description="Aportes de quienes apoyan la academia desde el formulario público." />
+      <PageTitle eyebrow="Operación" title="Donaciones" />
       {donations.length === 0 ? (
         <Empty title="Todavía no hay donaciones.">El formulario público está en <Link href="/academia/apoyar" className="font-semibold text-academy-primary underline underline-offset-4">/academia/apoyar</Link>.</Empty>
       ) : (

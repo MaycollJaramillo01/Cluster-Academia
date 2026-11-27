@@ -108,7 +108,6 @@ export function Shell({
         <aside className="border-b border-black/10 bg-white md:w-72 md:shrink-0 md:border-b-0 md:border-r">
           <div className="px-5 py-6 md:px-6 md:py-8">
             <h2 className="font-display text-4xl tracking-wide">{section.title}</h2>
-            <p className="mt-2 text-sm leading-relaxed text-black/55">{section.description}</p>
           </div>
           <nav className="flex gap-1 overflow-x-auto px-3 pb-4 md:flex-col md:px-3 md:pb-8" aria-label={section.title}>
             {items.map((item) => {

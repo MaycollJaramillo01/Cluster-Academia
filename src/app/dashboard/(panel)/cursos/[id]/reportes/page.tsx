@@ -43,7 +43,6 @@ export default async function CourseReports({ params, searchParams }: {
         back={{ href: base, label: course.title }}
         eyebrow="Reportes"
         title="Reportes del curso"
-        description="Dónde se detienen los alumnos y cómo les va en los cuestionarios."
         action={<a href={`${base}/reportes/exportar`} download className={btn}><Icon name="upload" size={16} className="rotate-180" />Descargar progreso en CSV</a>}
       />
       <VStack as="section" gap={4} aria-labelledby="retencion">

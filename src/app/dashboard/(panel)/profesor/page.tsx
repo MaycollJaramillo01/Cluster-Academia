@@ -21,7 +21,7 @@ export default async function ProfesorPage({ searchParams }: { searchParams: Pro
   const { error } = await searchParams;
   const header = (
     <>
-      <PageTitle title="Mis cursos" description="Edita tus cursos y sigue el avance de tus alumnos y lo que te corresponde de las ventas." />
+      <PageTitle title="Mis cursos" />
       {session.role === 'profesor' ? <NewCourseForm error={error} /> : null}
     </>
   );
