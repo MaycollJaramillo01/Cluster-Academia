@@ -52,10 +52,6 @@ export default async function EntrarPage({ searchParams }: { searchParams: Promi
         </VStack>
       ) : (
         <VStack gap={6}>
-          <nav aria-label="Tengo cuenta o soy nuevo" className="flex w-fit gap-1 rounded-academy border border-academy-line bg-academy-page p-1">
-            <Link href={modeLink('entrar')} aria-current={register ? undefined : 'page'} className="academy-focus inline-flex min-h-10 items-center rounded-academy px-4 text-sm font-semibold text-academy-muted aria-[current=page]:bg-academy-surface aria-[current=page]:text-academy-ink aria-[current=page]:shadow-sm">Entrar</Link>
-            <Link href={modeLink('registro')} aria-current={register ? 'page' : undefined} className="academy-focus inline-flex min-h-10 items-center rounded-academy px-4 text-sm font-semibold text-academy-muted aria-[current=page]:bg-academy-surface aria-[current=page]:text-academy-ink aria-[current=page]:shadow-sm">Crear cuenta</Link>
-          </nav>
           <VStack gap={2}>
             <Heading level={1} className="academy-title">{register ? 'Crea tu cuenta' : 'Entra a la academia'}</Heading>
             <p className="text-academy-muted">
