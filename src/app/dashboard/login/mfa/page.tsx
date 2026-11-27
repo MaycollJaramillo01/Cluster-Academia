@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import QRCode from 'qrcode';
@@ -6,7 +5,6 @@ import { Heading } from '@astryxdesign/core/Heading';
 import { HStack } from '@astryxdesign/core/HStack';
 import { VStack } from '@astryxdesign/core/VStack';
 import { AcademySubmit } from '@/components/academia/AcademySubmit';
-import { AcademyTheme } from '@/components/academia/AcademySurface';
 import { AuthShell } from '@/components/academia/AuthShell';
 import { confirmMfa } from '@/lib/crm/access';
 import { mfaEnrolled, pendingSecret } from '@/lib/crm/mfa';
@@ -58,54 +56,46 @@ export default async function MfaPage({ searchParams }: { searchParams: Promise<
   );
 
   return (
-    <AcademyTheme className="min-h-screen">
-      <HStack as="header" gap={3} align="center" className="h-16 border-b border-academy-line bg-academy-surface px-4 sm:px-6">
-        <HStack align="center" justify="center" className="size-10 shrink-0 rounded-academy bg-academy-ink">
-          <Image src="/assets/logo-white.webp" alt="" width={28} height={18} />
-        </HStack>
-        <p className="text-base font-bold">Cluster CRM</p>
-      </HStack>
-      <AuthShell>
-        <VStack gap={2}>
-          <Heading level={1} className="academy-title">{enrolled ? 'Verificación en dos pasos' : 'Configurar verificación en dos pasos'}</Heading>
-        </VStack>
-        {enrolled ? codeForm : (
-          <ol className="space-y-8">
-            <li className="space-y-4">
-              <HStack gap={3} align="center">
-                <strong className="grid size-7 shrink-0 place-items-center rounded-academy-full bg-academy-ink text-sm text-academy-surface">1</strong>
-                <Heading level={2} className="text-base font-bold">Escanea el código QR con tu app</Heading>
-              </HStack>
-              <HStack justify="center" className="rounded-academy-lg border border-academy-line bg-academy-surface p-3">
-                <figure
-                  role="img"
-                  aria-label="Código QR para agregar Cluster a tu app de autenticación"
-                  className="size-56 [&>svg]:size-full"
-                  dangerouslySetInnerHTML={{ __html: qr }}
-                />
-              </HStack>
-              <a href={link} className="academy-action academy-action-secondary w-full">Abrir en mi app de autenticación</a>
-              <details className="text-sm">
-                <summary className="academy-focus cursor-pointer font-semibold text-academy-muted underline underline-offset-4 hover:text-academy-ink">¿No puedes escanearlo? Escribe la clave a mano</summary>
-                <VStack gap={2} className="t-sheet mt-3 rounded-academy border border-academy-line bg-academy-page px-4 py-3">
-                  <p className="break-words font-mono text-base tracking-wider">{secret.match(/.{1,4}/g)?.join(' ')}</p>
-                  <p className="text-xs text-academy-muted">Cuenta: Cluster · Tipo: basada en tiempo · 6 dígitos</p>
-                </VStack>
-              </details>
-            </li>
-            <li className="space-y-4">
-              <HStack gap={3} align="center">
-                <strong className="grid size-7 shrink-0 place-items-center rounded-academy-full bg-academy-ink text-sm text-academy-surface">2</strong>
-                <Heading level={2} className="text-base font-bold">Escribe el código que muestra la app</Heading>
-              </HStack>
-              {codeForm}
-            </li>
-          </ol>
-        )}
-        <p className="border-t border-academy-line pt-5 text-sm">
-          <Link className="font-semibold text-academy-ink underline underline-offset-4" href="/dashboard/login">Volver</Link>
-        </p>
-      </AuthShell>
-    </AcademyTheme>
+    <AuthShell>
+      <VStack gap={2}>
+        <Heading level={1} className="academy-section-title">{enrolled ? 'Verificación en dos pasos' : 'Configurar verificación en dos pasos'}</Heading>
+      </VStack>
+      {enrolled ? codeForm : (
+        <ol className="space-y-8">
+          <li className="space-y-4">
+            <HStack gap={3} align="center">
+              <strong className="grid size-7 shrink-0 place-items-center rounded-academy-full bg-academy-ink text-sm text-academy-surface">1</strong>
+              <Heading level={2} className="text-base font-bold">Escanea el código QR con tu app</Heading>
+            </HStack>
+            <HStack justify="center" className="rounded-academy-lg border border-academy-line bg-academy-surface p-3">
+              <figure
+                role="img"
+                aria-label="Código QR para agregar Cluster a tu app de autenticación"
+                className="aspect-square w-56 max-w-full [&>svg]:size-full"
+                dangerouslySetInnerHTML={{ __html: qr }}
+              />
+            </HStack>
+            <a href={link} className="academy-action academy-action-secondary w-full">Abrir en mi app de autenticación</a>
+            <details className="text-sm">
+              <summary className="academy-focus cursor-pointer font-semibold text-academy-muted underline underline-offset-4 hover:text-academy-ink">¿No puedes escanearlo? Escribe la clave a mano</summary>
+              <VStack gap={2} className="t-sheet mt-3 rounded-academy border border-academy-line bg-academy-page px-4 py-3">
+                <p className="break-words font-mono text-base tracking-wider">{secret.match(/.{1,4}/g)?.join(' ')}</p>
+                <p className="text-xs text-academy-muted">Cuenta: Cluster · Tipo: basada en tiempo · 6 dígitos</p>
+              </VStack>
+            </details>
+          </li>
+          <li className="space-y-4">
+            <HStack gap={3} align="center">
+              <strong className="grid size-7 shrink-0 place-items-center rounded-academy-full bg-academy-ink text-sm text-academy-surface">2</strong>
+              <Heading level={2} className="text-base font-bold">Escribe el código que muestra la app</Heading>
+            </HStack>
+            {codeForm}
+          </li>
+        </ol>
+      )}
+      <p className="border-t border-academy-line pt-5 text-sm">
+        <Link className="font-semibold text-academy-ink underline underline-offset-4" href="/dashboard/login">Volver</Link>
+      </p>
+    </AuthShell>
   );
 }

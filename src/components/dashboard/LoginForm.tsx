@@ -3,7 +3,8 @@
 import { useActionState } from 'react';
 import { login } from '@/lib/crm/access';
 import { PasswordInput } from '@/components/ui/PasswordInput';
-import { SubmitButton } from '@/components/ui/SubmitButton';
+import { VStack } from '@astryxdesign/core/VStack';
+import { AcademySubmit } from '@/components/academia/AcademySubmit';
 
 const messages: Record<string, string> = {
   clave: 'El correo o la contraseña no coinciden.',
@@ -17,22 +18,19 @@ const messages: Record<string, string> = {
   cuenta: 'El correo o la contraseña no coinciden.',
 };
 
-const input = 'h-12 w-full border bg-white px-3 text-base outline-none transition-colors duration-150 focus:ring-1';
-
 // El error de la URL llega de Google o de un segundo paso vencido; el de la acción, de este mismo formulario.
 export function LoginForm({ initialError }: { initialError: string }) {
   const [state, action] = useActionState(login, { error: initialError, email: '', attempt: 0 });
   const message = state.error ? messages[state.error] || 'No se pudo entrar. Intenta de nuevo.' : '';
   const passwordError = state.error === 'clave' || state.error === 'corta' || state.error === 'setup' || state.error === 'cuenta';
-  const tone = (bad: boolean) => (bad ? 'border-[#b42318] focus:border-[#b42318] focus:ring-[#b42318]' : 'border-black/20 focus:border-ink focus:ring-ink');
 
   return (
     <form action={action} className="space-y-5">
       {message ? (
-        <p id="login-error" role="alert" className="border border-[#b42318]/30 bg-[#fef3f2] px-4 py-3 text-sm text-[#7a271a]">{message}</p>
+        <p id="login-error" role="alert" className="rounded-academy border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900">{message}</p>
       ) : null}
-      <div>
-        <label htmlFor="email" className="mb-1.5 block text-sm font-medium">Correo</label>
+      <VStack gap={1}>
+        <label htmlFor="email" className="text-sm font-semibold">Correo</label>
         <input
           id="email"
           name="email"
@@ -43,11 +41,11 @@ export function LoginForm({ initialError }: { initialError: string }) {
           autoFocus={!state.email}
           defaultValue={state.email}
           key={`email-${state.email}`}
-          className={`${input} ${tone(false)}`}
+          className="academy-field w-full"
         />
-      </div>
-      <div>
-        <label htmlFor="password" className="mb-1.5 block text-sm font-medium">Contraseña</label>
+      </VStack>
+      <VStack gap={1}>
+        <label htmlFor="password" className="text-sm font-semibold">Contraseña</label>
         <PasswordInput
           id="password"
           name="password"
@@ -58,10 +56,10 @@ export function LoginForm({ initialError }: { initialError: string }) {
           aria-invalid={passwordError || undefined}
           aria-describedby={passwordError ? 'login-error' : undefined}
           key={`password-${state.attempt}`}
-          className={`t-input ${input} ${passwordError ? 'is-shaking' : ''} ${tone(passwordError)}`}
+          className={`academy-field t-input w-full ${passwordError ? 'border-red-700 is-shaking' : ''}`}
         />
-      </div>
-      <SubmitButton pending="Entrando…">Entrar</SubmitButton>
+      </VStack>
+      <AcademySubmit pending="Entrando…" label="Entrar" fullWidth />
     </form>
   );
 }

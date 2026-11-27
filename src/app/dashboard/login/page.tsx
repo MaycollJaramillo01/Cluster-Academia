@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { Heading } from '@astryxdesign/core/Heading';
-import { VStack } from '@astryxdesign/core/VStack';
+import { AuthShell } from '@/components/academia/AuthShell';
 import { LoginForm } from '@/components/dashboard/LoginForm';
 import { homeFor } from '@/lib/crm/roles';
 import { dashboardSession, googleConfigured } from '@/lib/crm/session';
@@ -12,12 +12,10 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   const { error } = await searchParams;
 
   return (
-    <main className="mx-auto max-w-md px-6 py-12">
-      <VStack gap={6}>
-        <Heading level={1}>Cluster CRM</Heading>
-        <LoginForm initialError={error || ''} />
-        {googleConfigured() ? <Link href="/dashboard/auth/google" className="underline">Entrar con Google</Link> : null}
-      </VStack>
-    </main>
+    <AuthShell>
+      <Heading level={1} className="academy-section-title">Cluster CRM</Heading>
+      <LoginForm initialError={error || ''} />
+      {googleConfigured() ? <Link href="/dashboard/auth/google" className="academy-action academy-action-secondary justify-center">Entrar con Google</Link> : null}
+    </AuthShell>
   );
 }
